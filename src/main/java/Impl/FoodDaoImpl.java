@@ -41,7 +41,7 @@ public class FoodDaoImpl implements FoodDao{
 		{
 			e.printStackTrace();
 		}
-		return false;
+		return true;
 	}
 
 	@Override

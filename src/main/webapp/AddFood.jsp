@@ -31,11 +31,15 @@
 </tr>
 <tr>
 <th>Food Price:</th>
-<td><input type="text"name="price"class="form-control"></td>
+<td><input type="text"name="foodPrice"class="form-control"></td>
 </tr>
 <tr>
-<th>Food Iamge:</th>
+<th>Food Image:</th>
 <td><input type="text"name="image"class="form-control"></td>
+</tr>
+<tr>
+<td><input type="submit" value="Add" class="btn btn-success"></td>
+<td><input type="reset" value="Clear" class="btn btn-warning"></td>
 </tr>
 </table>
 </form>
