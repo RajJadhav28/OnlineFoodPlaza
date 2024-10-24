@@ -9,6 +9,7 @@
 </head>
 <body>
 <jsp:include page="Header.jsp"></jsp:include>
+<jsp:include page="Message.jsp"></jsp:include>
 <div id="templatemo_top_dishes">
 
     	<h1>Recommended Dishes</h1>

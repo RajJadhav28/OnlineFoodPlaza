@@ -2,6 +2,7 @@ package Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,6 +30,7 @@ public class FoodServlet extends HttpServlet {
 	private double foodPrice;
 	private String image;
 	Food f=null;
+	List list=null;
 	
 	FoodDaoImpl fdimpl=new FoodDaoImpl();
 	boolean flag;
@@ -49,9 +51,16 @@ public class FoodServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
+		
+		session=request.getSession();
+		String process=request.getParameter("process");
+		if(process!=null && process.equals("allFood")) {
+			list=fdimpl.getAllFood();
+			session.setAttribute("flist", list);
+			response.sendRedirect("FoodList.jsp");
+			
+		}
+		}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -81,14 +90,14 @@ public class FoodServlet extends HttpServlet {
 			flag= fdimpl.addFood(f);
 			if(flag) {
 				msg="Recored added successfully";
-				session.setAttribute("msg", msg);
+				request.setAttribute("msg", msg);
 				rd=request.getRequestDispatcher("MyIndex.jsp");
 				rd.forward(request, response);
 				
 				
 			}else {
 				errmsg="Recored not added";
-				session.setAttribute("msg", errmsg);
+				request.setAttribute("errmsg", errmsg);
 				rd=request.getRequestDispatcher("MyIndex.jsp");
 				rd.forward(request, response);
 			}
